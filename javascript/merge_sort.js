@@ -1,9 +1,23 @@
 function merge(arr1, arr2) {
-  // type your code here
+  const result = [];
+  while (arr1.length !== 0 && arr2.length !== 0) {
+    if (arr1[0] < arr2[0])
+      result.push(arr1.shift());
+    else
+      result.push(arr2.shift());
+  }
+  return [...result, ...arr1, ...arr2];
 }
 
 function mergeSort(arr) {
-  // type your code here
+  if (arr.length < 2) return arr;
+  const n = arr.length
+
+
+  const leftArr = mergeSort(arr.slice(0, n/2));
+  const rightArr = mergeSort(arr.slice(n/2));
+
+  return merge(leftArr, rightArr);
 }
 
 if (require.main === module) {
